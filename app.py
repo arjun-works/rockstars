@@ -1,224 +1,96 @@
-from flask import Flask, render_template, request, jsonify, send_file, session
-from werkzeug.utils import secure_filename
+import streamlit as st
 import os
-import threading
-from datetime import datetime
 import uuid
 from visual_ai_regression import VisualAIRegression
+from werkzeug.utils import secure_filename
+from datetime import datetime
+import base64
 import zipfile
 from io import BytesIO
-import base64
 
-app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'your-secret-key-here')
-
-# Configuration
+# Streamlit Cloud only allows writing to /tmp or ./
 UPLOAD_FOLDER = 'uploads'
 RESULTS_FOLDER = 'results'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'bmp'}
-
-# Ensure directories exist
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(RESULTS_FOLDER, exist_ok=True)
 
-# Global storage for analysis results (in production, use Redis or database)
-analysis_results = {}
+st.set_page_config(page_title="Visual AI Regression", layout="wide")
+st.title("Visual AI Regression Testing (Streamlit)")
+st.markdown("Upload a baseline and current image to compare. Configure analysis options and view/download results.")
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+# --- File Upload ---
+col1, col2 = st.columns(2)
+with col1:
+    baseline_file = st.file_uploader("Baseline Image", type=["png", "jpg", "jpeg", "gif", "bmp"], key="baseline")
+with col2:
+    current_file = st.file_uploader("Current Image", type=["png", "jpg", "jpeg", "gif", "bmp"], key="current")
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+# --- Analysis Options ---
+st.sidebar.header("Analysis Settings")
+sensitivity = st.sidebar.slider("Sensitivity", 0.1, 1.0, 0.8, 0.05)
+analysis_type = st.sidebar.selectbox("Analysis Type", ["comprehensive", "quick", "detailed"])
+detect_layout_shifts = st.sidebar.checkbox("Detect Layout Shifts", value=True)
+detect_color_changes = st.sidebar.checkbox("Detect Color Changes", value=True)
+detect_text_changes = st.sidebar.checkbox("Detect Text Changes", value=True)
 
-@app.route('/upload', methods=['POST'])
-def upload_files():
-    try:
-        if 'image1' not in request.files or 'image2' not in request.files:
-            return jsonify({'error': 'Both images are required'}), 400
-        
-        file1 = request.files['image1']
-        file2 = request.files['image2']
-        
-        if file1.filename == '' or file2.filename == '':
-            return jsonify({'error': 'No files selected'}), 400
-        
-        if not (allowed_file(file1.filename) and allowed_file(file2.filename)):
-            return jsonify({'error': 'Invalid file type. Please upload image files.'}), 400
-        
-        # Generate unique session ID
-        session_id = str(uuid.uuid4())
-        session['session_id'] = session_id
-        
-        # Create session directory
-        session_dir = os.path.join(UPLOAD_FOLDER, session_id)
-        os.makedirs(session_dir, exist_ok=True)
-        
-        # Save uploaded files
-        filename1 = secure_filename(file1.filename)
-        filename2 = secure_filename(file2.filename)
-        
-        filepath1 = os.path.join(session_dir, 'baseline_' + filename1)
-        filepath2 = os.path.join(session_dir, 'current_' + filename2)
-        
-        file1.save(filepath1)
-        file2.save(filepath2)
-        
-        return jsonify({
-            'success': True,
-            'session_id': session_id,
-            'message': 'Files uploaded successfully'
-        })
-        
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+if baseline_file and current_file:
+    # Save uploaded files
+    session_id = str(uuid.uuid4())
+    session_dir = os.path.join(UPLOAD_FOLDER, session_id)
+    os.makedirs(session_dir, exist_ok=True)
+    baseline_path = os.path.join(session_dir, 'baseline_' + secure_filename(baseline_file.name))
+    current_path = os.path.join(session_dir, 'current_' + secure_filename(current_file.name))
+    with open(baseline_path, 'wb') as f:
+        f.write(baseline_file.read())
+    with open(current_path, 'wb') as f:
+        f.write(current_file.read())
 
-@app.route('/analyze', methods=['POST'])
-def analyze():
-    try:
-        data = request.get_json()
-        session_id = session.get('session_id')
-        
-        if not session_id:
-            return jsonify({'error': 'No session found. Please upload images first.'}), 400
-        
-        session_dir = os.path.join(UPLOAD_FOLDER, session_id)
-        if not os.path.exists(session_dir):
-            return jsonify({'error': 'Session not found'}), 400
-        
-        # Get uploaded files
-        files = os.listdir(session_dir)
-        baseline_file = None
-        current_file = None
-        
-        for file in files:
-            if file.startswith('baseline_'):
-                baseline_file = os.path.join(session_dir, file)
-            elif file.startswith('current_'):
-                current_file = os.path.join(session_dir, file)
-        
-        if not baseline_file or not current_file:
-            return jsonify({'error': 'Uploaded files not found'}), 400
-        
-        # Configure analysis
-        config = {
-            'baseline_image': baseline_file,
-            'current_image': current_file,
-            'sensitivity': data.get('sensitivity', 0.8),
-            'analysis_type': data.get('analysis_type', 'comprehensive'),
-            'detect_layout_shifts': data.get('detect_layout_shifts', True),
-            'detect_color_changes': data.get('detect_color_changes', True),
-            'detect_text_changes': data.get('detect_text_changes', True),
-            'generate_report': True,
-            'output_dir': os.path.join(RESULTS_FOLDER, session_id)
-        }
-        
-        # Create results directory
-        os.makedirs(config['output_dir'], exist_ok=True)
-        
-        # Start analysis in background thread
-        def run_analysis():
+    st.success("Files uploaded successfully!")
+    st.image([baseline_path, current_path], caption=["Baseline", "Current"], width=300)
+
+    if st.button("Start Analysis"):
+        with st.spinner("Running visual regression analysis..."):
+            config = {
+                'baseline_image': baseline_path,
+                'current_image': current_path,
+                'sensitivity': sensitivity,
+                'analysis_type': analysis_type,
+                'detect_layout_shifts': detect_layout_shifts,
+                'detect_color_changes': detect_color_changes,
+                'detect_text_changes': detect_text_changes,
+                'generate_report': True,
+                'output_dir': os.path.join(RESULTS_FOLDER, session_id)
+            }
+            os.makedirs(config['output_dir'], exist_ok=True)
+            regression_module = VisualAIRegression()
             try:
-                regression_module = VisualAIRegression()
                 results = regression_module.run_image_analysis(config)
-                analysis_results[session_id] = {
-                    'status': 'completed',
-                    'results': results,
-                    'timestamp': datetime.now().isoformat()
-                }
+                st.success("Analysis completed!")
+                # Show metrics
+                st.subheader("Results")
+                st.write(f"**Similarity Score:** {results.get('similarity_score', 0)*100:.1f}%")
+                st.write(f"**Differences Found:** {results.get('differences_count', 0)}")
+                st.write(f"**Analysis Time:** {results.get('analysis_duration', 0):.2f} seconds")
+                # Show difference image
+                if results.get('difference_image_path') and os.path.exists(results['difference_image_path']):
+                    st.image(results['difference_image_path'], caption="Difference Visualization", use_column_width=True)
+                # Download report as zip
+                report_dir = config['output_dir']
+                memory_file = BytesIO()
+                with zipfile.ZipFile(memory_file, 'w', zipfile.ZIP_DEFLATED) as zf:
+                    for root, dirs, files in os.walk(report_dir):
+                        for file in files:
+                            file_path = os.path.join(root, file)
+                            arc_path = os.path.relpath(file_path, report_dir)
+                            zf.write(file_path, arc_path)
+                memory_file.seek(0)
+                st.download_button(
+                    label="Download Full Report (ZIP)",
+                    data=memory_file,
+                    file_name=f"visual_regression_results_{session_id}.zip",
+                    mime="application/zip"
+                )
             except Exception as e:
-                analysis_results[session_id] = {
-                    'status': 'error',
-                    'error': str(e),
-                    'timestamp': datetime.now().isoformat()
-                }
-        
-        # Initialize analysis status
-        analysis_results[session_id] = {
-            'status': 'running',
-            'timestamp': datetime.now().isoformat()
-        }
-        
-        # Start analysis thread
-        thread = threading.Thread(target=run_analysis)
-        thread.daemon = True
-        thread.start()
-        
-        return jsonify({
-            'success': True,
-            'session_id': session_id,
-            'message': 'Analysis started successfully'
-        })
-        
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-@app.route('/status/<session_id>')
-def get_status(session_id):
-    try:
-        if session_id not in analysis_results:
-            return jsonify({'error': 'Session not found'}), 404
-        
-        status_data = analysis_results[session_id]
-        
-        if status_data['status'] == 'completed':
-            # Prepare results for frontend
-            results = status_data['results']
-            
-            # Convert images to base64 for display
-            if 'difference_image_path' in results:
-                try:
-                    with open(results['difference_image_path'], 'rb') as img_file:
-                        img_data = base64.b64encode(img_file.read()).decode()
-                        results['difference_image_base64'] = f"data:image/png;base64,{img_data}"
-                except Exception:
-                    results['difference_image_base64'] = None
-            
-            return jsonify({
-                'status': 'completed',
-                'results': results
-            })
-        
-        return jsonify(status_data)
-        
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-@app.route('/download/<session_id>')
-def download_results(session_id):
-    try:
-        if session_id not in analysis_results:
-            return jsonify({'error': 'Session not found'}), 404
-        
-        results_dir = os.path.join(RESULTS_FOLDER, session_id)
-        if not os.path.exists(results_dir):
-            return jsonify({'error': 'Results not found'}), 404
-        
-        # Create zip file of all results
-        memory_file = BytesIO()
-        with zipfile.ZipFile(memory_file, 'w', zipfile.ZIP_DEFLATED) as zf:
-            for root, dirs, files in os.walk(results_dir):
-                for file in files:
-                    file_path = os.path.join(root, file)
-                    arc_path = os.path.relpath(file_path, results_dir)
-                    zf.write(file_path, arc_path)
-        
-        memory_file.seek(0)
-        
-        return send_file(
-            BytesIO(memory_file.getvalue()),
-            mimetype='application/zip',
-            as_attachment=True,
-            download_name=f'visual_regression_results_{session_id}.zip'
-        )
-        
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-@app.route('/health')
-def health_check():
-    return jsonify({'status': 'healthy', 'timestamp': datetime.now().isoformat()})
-
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=False)
+                st.error(f"Analysis failed: {e}")
+else:
+    st.info("Please upload both baseline and current images to begin.")
