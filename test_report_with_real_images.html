@@ -1,0 +1,596 @@
+
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Visual Regression Analysis Report</title>
+                <style>
+                    body {
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                        margin: 0;
+                        padding: 20px;
+                        background-color: #f5f5f5;
+                        color: #333;
+                        line-height: 1.6;
+                    }
+                    .header {
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white;
+                        padding: 30px;
+                        border-radius: 10px;
+                        margin-bottom: 30px;
+                        text-align: center;
+                    }
+                    .sharing-buttons {
+                        text-align: center;
+                        margin: 20px 0;
+                        padding: 20px;
+                        background: white;
+                        border-radius: 10px;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    }
+                    .share-btn {
+                        display: inline-block;
+                        padding: 12px 24px;
+                        margin: 0 10px;
+                        background: #667eea;
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 5px;
+                        border: none;
+                        cursor: pointer;
+                        font-size: 14px;
+                        transition: background 0.3s;
+                    }
+                    .share-btn:hover {
+                        background: #5a6fd8;
+                    }
+                    .container {
+                        max-width: 1400px;
+                        margin: 0 auto;
+                        background: white;
+                        padding: 30px;
+                        border-radius: 10px;
+                        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                    }
+                    .section {
+                        margin-bottom: 30px;
+                        padding: 20px;
+                        border-left: 4px solid #667eea;
+                        background-color: #f9f9f9;
+                        border-radius: 5px;
+                    }
+                    .section h2 {
+                        color: #667eea;
+                        margin-top: 0;
+                        border-bottom: 2px solid #667eea;
+                        padding-bottom: 10px;
+                    }
+                    .config-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-bottom: 20px;
+                    }
+                    .config-table th, .config-table td {
+                        padding: 12px;
+                        text-align: left;
+                        border-bottom: 1px solid #ddd;
+                    }
+                    .config-table th {
+                        background-color: #667eea;
+                        color: white;
+                    }
+                    .config-table tr:nth-child(even) {
+                        background-color: #f2f2f2;
+                    }
+                    .summary-cards {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                        gap: 20px;
+                        margin-bottom: 30px;
+                    }
+                    .card {
+                        background: white;
+                        padding: 25px;
+                        border-radius: 8px;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                        text-align: center;
+                        border-top: 4px solid #667eea;
+                    }
+                    .card h3 {
+                        margin-top: 0;
+                        color: #667eea;
+                        font-size: 1.2em;
+                    }
+                    .card .number {
+                        font-size: 2.5em;
+                        font-weight: bold;
+                        color: #764ba2;
+                        margin: 10px 0;
+                    }
+                    .image-gallery {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+                        gap: 20px;
+                        margin: 20px 0;
+                    }
+                    .image-container {
+                        text-align: center;
+                        background: white;
+                        padding: 15px;
+                        border-radius: 8px;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    }
+                    .image-container img {
+                        max-width: 100%;
+                        height: auto;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        transition: transform 0.3s;
+                    }
+                    .image-container img:hover {
+                        transform: scale(1.05);
+                    }
+                    .image-container h4 {
+                        margin: 15px 0 5px 0;
+                        color: #667eea;
+                    }
+                    .difference-highlight {
+                        background-color: #fff3cd;
+                        border: 1px solid #ffeaa7;
+                        border-radius: 5px;
+                        padding: 15px;
+                        margin: 10px 0;
+                    }
+                    .difference-highlight h4 {
+                        color: #856404;
+                        margin-top: 0;
+                    }
+                    .status-badge {
+                        display: inline-block;
+                        padding: 4px 12px;
+                        border-radius: 20px;
+                        font-size: 0.9em;
+                        font-weight: bold;
+                    }
+                    .status-pass {
+                        background-color: #d4edda;
+                        color: #155724;
+                    }
+                    .status-fail {
+                        background-color: #f8d7da;
+                        color: #721c24;
+                    }
+                    .status-warning {
+                        background-color: #fff3cd;
+                        color: #856404;
+                    }
+                    .copy-button {
+                        background: #28a745;
+                        color: white;
+                        border: none;
+                        padding: 8px 16px;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        font-size: 12px;
+                        margin-left: 10px;
+                    }
+                    .copy-button:hover {
+                        background: #218838;
+                    }
+                    .analysis-details {
+                        background: #f8f9fa;
+                        border-radius: 8px;
+                        padding: 20px;
+                        margin: 15px 0;
+                    }
+                    .metric-value {
+                        font-weight: bold;
+                        color: #495057;
+                    }
+                    @media (max-width: 768px) {
+                        .summary-cards {
+                            grid-template-columns: 1fr;
+                        }
+                        .image-gallery {
+                            grid-template-columns: 1fr;
+                        }
+                        .container {
+                            padding: 15px;
+                        }
+                    }
+                </style>
+                <script>
+                    function copyToClipboard(text) {
+                        navigator.clipboard.writeText(text).then(() => {
+                            alert('Link copied to clipboard!');
+                        });
+                    }
+                    
+                    function shareReport() {
+                        const url = window.location.href;
+                        if (navigator.share) {
+                            navigator.share({
+                                title: 'Visual Regression Analysis Report',
+                                text: 'Check out this visual regression analysis report',
+                                url: url
+                            });
+                        } else {
+                            copyToClipboard(url);
+                        }
+                    }
+                    
+                    function downloadReport() {
+                        const link = document.createElement('a');
+                        link.href = window.location.href.replace('.html', '_complete_package.zip');
+                        link.download = 'visual_regression_report.zip';
+                        link.click();
+                    }
+                    
+                    function emailReport() {
+                        const subject = encodeURIComponent('Visual Regression Analysis Report');
+                        const body = encodeURIComponent('Please find the visual regression analysis report at: ' + window.location.href);
+                        window.open('mailto:?subject=' + subject + '&body=' + body);
+                    }
+                    
+                    function openImage(src) {
+                        window.open(src, '_blank');
+                    }
+                </script>
+            </head>
+            <body>
+                <div class="header">
+                    <h1>🔍 Visual Regression Analysis Report</h1>
+                    <p>Generated on: 2025-08-07 09:49:41</p>
+                    <p>Comprehensive comparison between two web pages</p>
+                </div>
+                
+                <div class="sharing-buttons">
+                    <h3>📤 Share This Report</h3>
+                    <button class="share-btn" onclick="shareReport()">📱 Share</button>
+                    <button class="share-btn" onclick="emailReport()">📧 Email</button>
+                    <button class="share-btn" onclick="downloadReport()">📦 Download Package</button>
+                    <button class="share-btn" onclick="copyToClipboard(window.location.href)">🔗 Copy Link</button>
+                </div>
+
+                <div class="container">
+                    <div class="section">
+                        <h2>📊 Executive Summary</h2>
+                        <div class="summary-cards">
+                            <div class="card">
+                                <h3>Overall Similarity</h3>
+                                <div class="number">92.3%</div>
+                                <span class="status-badge status-pass">
+                                    PASS
+                                </span>
+                            </div>
+                            <div class="card">
+                                <h3>Layout Differences</h3>
+                                <div class="number">0</div>
+                                <span class="status-badge status-pass">
+                                    PASS
+                                </span>
+                            </div>
+                            <div class="card">
+                                <h3>Color Changes</h3>
+                                <div class="number">1</div>
+                                <span class="status-badge status-warning">
+                                    WARNING
+                                </span>
+                            </div>
+                            <div class="card">
+                                <h3>AI Anomalies</h3>
+                                <div class="number">1</div>
+                                <span class="status-badge status-warning">
+                                    WARNING
+                                </span>
+                            </div>
+                            <div class="card">
+                                <h3>WCAG Compliance</h3>
+                                <div class="number">86%</div>
+                                <span class="status-badge status-pass">
+                                    COMPLIANT
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2>🔧 Test Configuration</h2>
+                        <table class="config-table">
+                            <tr><th>Parameter</th><th>Value</th></tr>
+                            <tr><td>Reference URL</td><td>https://example.com/original</td></tr>
+                            <tr><td>Test URL</td><td>https://example.com/modified</td></tr>
+                            <tr><td>Browser</td><td>chrome</td></tr>
+                            <tr><td>Resolution</td><td>800x600</td></tr>
+                            <tr><td>Layout Analysis</td><td>✅ Enabled</td></tr>
+                            <tr><td>Color Analysis</td><td>✅ Enabled</td></tr>
+                            <tr><td>AI Analysis</td><td>✅ Enabled</td></tr>
+                            <tr><td>WCAG Compliance</td><td>✅ Enabled</td></tr>
+                        </table>
+                    </div>
+
+                    <div class="section">
+                        <h2>🖼️ Visual Comparison Gallery</h2>
+                        <div class="image-gallery">
+                            <div class="image-container">
+                                <h4>📸 Original Screenshots Side-by-Side</h4>
+                                
+                <img src="test_sidebyside_real.png" 
+                     alt="Side by side comparison" 
+                     onclick="openImage(this.src)"
+                     style="max-width: 100%; height: auto; border-radius: 5px; cursor: pointer; transition: transform 0.3s;"
+                     onmouseover="this.style.transform='scale(1.02)'"
+                     onmouseout="this.style.transform='scale(1)'">
+                
+                                <p>Click to view full size</p>
+                            </div>
+                            
+                            <div class="image-container">
+                                <h4>🔥 Difference Heatmap</h4>
+                                
+                <img src="test_heatmap_real.png" 
+                     alt="Difference heatmap" 
+                     onclick="openImage(this.src)"
+                     style="max-width: 100%; height: auto; border-radius: 5px; cursor: pointer; transition: transform 0.3s;"
+                     onmouseover="this.style.transform='scale(1.02)'"
+                     onmouseout="this.style.transform='scale(1)'">
+                
+                                <p>Red areas indicate differences</p>
+                            </div>
+                            
+                            <div class="image-container">
+                                <h4>🎯 Annotated Comparison</h4>
+                                
+                <img src="test_visual_real.png" 
+                     alt="Visual comparison" 
+                     onclick="openImage(this.src)"
+                     style="max-width: 100%; height: auto; border-radius: 5px; cursor: pointer; transition: transform 0.3s;"
+                     onmouseover="this.style.transform='scale(1.02)'"
+                     onmouseout="this.style.transform='scale(1)'">
+                
+                                <p>Highlighted differences and annotations</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2>📈 Detailed Analysis</h2>
+                        
+                        <div class="analysis-details">
+                            <h3>🔍 Image Similarity Metrics</h3>
+                            <p><strong>SSIM Score:</strong> <span class="metric-value">0.9230</span> (Higher is better, 1.0 = identical)</p>
+                            <p><strong>MSE Score:</strong> <span class="metric-value">45.70</span> (Lower is better, 0 = identical)</p>
+                            <p><strong>Pixel Difference:</strong> <span class="metric-value">8.20%</span></p>
+                        </div>
+
+                        <div class="analysis-details">
+                            <h3>🏗️ Layout Analysis Results</h3>
+                            <p><strong>Layout Shifts Detected:</strong> <span class="metric-value">0</span></p>
+                            <p><strong>Element Changes:</strong> <span class="metric-value">0</span></p>
+                            <p><strong>Missing Elements:</strong> <span class="metric-value">0</span></p>
+                        </div>
+
+                        <div class="analysis-details">
+                            <h3>🎨 Color & Font Analysis</h3>
+                            <p><strong>Color Differences:</strong> <span class="metric-value">1</span></p>
+                            <p><strong>Font Changes:</strong> <span class="metric-value">0</span></p>
+                        </div>
+
+                        <div class="analysis-details">
+                            <h3>🤖 AI Analysis Results</h3>
+                            <p><strong>Anomalies Detected:</strong> <span class="metric-value">1</span></p>
+                            <p><strong>Confidence Score:</strong> <span class="metric-value">0.87</span></p>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2>♿ WCAG Accessibility Compliance Analysis</h2>
+                        
+                <div class="analysis-details">
+                    <h3>🌐 Reference Page Accessibility Analysis</h3>
+                    <p><strong>URL:</strong> https://example.com/original</p>
+                    <p><strong>WCAG Version:</strong> 2.2</p>
+                    <p><strong>Compliance Level:</strong> 
+                        <span class="status-badge status-pass">
+                            AA
+                        </span>
+                    </p>
+                    <p><strong>Overall Score:</strong> <span class="metric-value">82.3%</span></p>
+                    <p><strong>Total Issues:</strong> <span class="metric-value">3</span></p>
+                    <p><strong>Critical Issues:</strong> <span class="metric-value">1</span></p>
+                </div>
+                
+                    <div class="analysis-details">
+                        <h4>🆕 WCAG 2.2 Specific Features</h4>
+                        <p><strong>Target Size Compliance:</strong> 
+                            <span class="status-badge status-pass">
+                                ✅ Compliant
+                            </span>
+                        </p>
+                        <p><strong>Focus Appearance Score:</strong> <span class="metric-value">85.0%</span></p>
+                        <p><strong>Dragging Alternative Score:</strong> <span class="metric-value">90.0%</span></p>
+                    </div>
+                    
+                    <div class="analysis-details">
+                        <h4>🎯 WCAG Principles Breakdown</h4>
+                        <div class="summary-cards">
+                    
+                            <div class="card">
+                                <h3>Perceivable</h3>
+                                <div class="number">88%</div>
+                                <p>0 issues found</p>
+                                <span class="status-badge status-pass">
+                                    GOOD
+                                </span>
+                            </div>
+                            
+                            <div class="card">
+                                <h3>Operable</h3>
+                                <div class="number">95%</div>
+                                <p>0 issues found</p>
+                                <span class="status-badge status-pass">
+                                    GOOD
+                                </span>
+                            </div>
+                            
+                            <div class="card">
+                                <h3>Understandable</h3>
+                                <div class="number">85%</div>
+                                <p>0 issues found</p>
+                                <span class="status-badge status-pass">
+                                    GOOD
+                                </span>
+                            </div>
+                            
+                            <div class="card">
+                                <h3>Robust</h3>
+                                <div class="number">90%</div>
+                                <p>0 issues found</p>
+                                <span class="status-badge status-pass">
+                                    GOOD
+                                </span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="difference-highlight">
+                        <h4>🚨 Critical Accessibility Issues</h4>
+                    </div>
+                <div class="analysis-details">
+                    <h4>💡 Accessibility Recommendations</h4>
+                    <div class="difference-highlight">
+                        <p>🟡 <strong>Good Progress:</strong> Most accessibility requirements are met, but some refinements are needed.</p><br><p>⚠️ Address 1 critical accessibility issues immediately.</p>
+                    </div>
+                </div>
+                
+                <div class="analysis-details">
+                    <h3>🌐 Test Page Accessibility Analysis</h3>
+                    <p><strong>URL:</strong> https://example.com/modified</p>
+                    <p><strong>WCAG Version:</strong> 2.2</p>
+                    <p><strong>Compliance Level:</strong> 
+                        <span class="status-badge status-pass">
+                            AA
+                        </span>
+                    </p>
+                    <p><strong>Overall Score:</strong> <span class="metric-value">88.7%</span></p>
+                    <p><strong>Total Issues:</strong> <span class="metric-value">2</span></p>
+                    <p><strong>Critical Issues:</strong> <span class="metric-value">0</span></p>
+                </div>
+                
+                    <div class="analysis-details">
+                        <h4>🆕 WCAG 2.2 Specific Features</h4>
+                        <p><strong>Target Size Compliance:</strong> 
+                            <span class="status-badge status-pass">
+                                ✅ Compliant
+                            </span>
+                        </p>
+                        <p><strong>Focus Appearance Score:</strong> <span class="metric-value">90.0%</span></p>
+                        <p><strong>Dragging Alternative Score:</strong> <span class="metric-value">95.0%</span></p>
+                    </div>
+                    
+                    <div class="analysis-details">
+                        <h4>🎯 WCAG Principles Breakdown</h4>
+                        <div class="summary-cards">
+                    
+                            <div class="card">
+                                <h3>Perceivable</h3>
+                                <div class="number">92%</div>
+                                <p>0 issues found</p>
+                                <span class="status-badge status-pass">
+                                    GOOD
+                                </span>
+                            </div>
+                            
+                            <div class="card">
+                                <h3>Operable</h3>
+                                <div class="number">96%</div>
+                                <p>0 issues found</p>
+                                <span class="status-badge status-pass">
+                                    GOOD
+                                </span>
+                            </div>
+                            
+                            <div class="card">
+                                <h3>Understandable</h3>
+                                <div class="number">88%</div>
+                                <p>0 issues found</p>
+                                <span class="status-badge status-pass">
+                                    GOOD
+                                </span>
+                            </div>
+                            
+                            <div class="card">
+                                <h3>Robust</h3>
+                                <div class="number">95%</div>
+                                <p>0 issues found</p>
+                                <span class="status-badge status-pass">
+                                    GOOD
+                                </span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                <div class="analysis-details">
+                    <h4>💡 Accessibility Recommendations</h4>
+                    <div class="difference-highlight">
+                        <p>🟢 <strong>Excellent Accessibility:</strong> This page demonstrates strong accessibility practices.</p>
+                    </div>
+                </div>
+                
+        <div class="analysis-details">
+            <h3>🔄 Accessibility Comparison</h3>
+            <div class="summary-cards">
+                <div class="card">
+                    <h3>Score Change</h3>
+                    <div class="number" style="color: green">
+                        +6.4%
+                    </div>
+                    <p>Reference: 82.3% → Test: 88.7%</p>
+                </div>
+                <div class="card">
+                    <h3>Issues Change</h3>
+                    <div class="number" style="color: green">
+                        -1
+                    </div>
+                    <p>Reference: 3 → Test: 2</p>
+                </div>
+            </div>
+            
+            <div class="difference-highlight">
+                <h4>📊 Comparison Summary</h4>
+                <p>🟢 <strong>Improvement:</strong> The test page shows significant accessibility improvements.</p><p>✅ The test page resolved 1 accessibility issues.</p>
+            </div>
+        </div>
+        
+                    </div>
+
+                    <div class="section">
+                        <h2>📋 Detailed Findings</h2>
+                        
+                        <div class="difference-highlight"><h4>🎨 Color Differences</h4><p><strong>Change 1:</strong> {'color_distance': 25.3, 'area': 850, 'position': [110, 110, 200, 100]}</p></div><div class="difference-highlight"><h4>🤖 AI-Detected Anomalies</h4><p><strong>Anomaly 1:</strong> {'type': 'color_shift', 'confidence': 0.87, 'location': [110, 110, 200, 100]}</p></div>
+                    </div>
+
+                    <div class="section">
+                        <h2>💾 Export Options</h2>
+                        <p>Download different formats of this report:</p>
+                        <div style="margin: 15px 0;">
+                            <a href="test_report_with_images.pdf" class="share-btn" download>📄 PDF Report</a>
+                            <a href="test_report_with_images.json" class="share-btn" download>📊 JSON Data</a>
+                            <a href="test_package_with_images.zip" class="share-btn" download>📦 Complete Package</a>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2>ℹ️ Report Information</h2>
+                        <p><strong>Generated:</strong> 2025-08-07 09:49:41</p>
+                        <p><strong>Tool:</strong> Visual AI Regression Module v1.0</p>
+                        <p><strong>Analysis Duration:</strong> N/A</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+            

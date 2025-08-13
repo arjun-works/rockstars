@@ -1,0 +1,188 @@
+{
+  "metadata": {
+    "generated_at": "2025-08-13T11:25:30.051985",
+    "report_version": "1.0",
+    "wcag_version": "2.1",
+    "generator": "Visual AI Regression Module - WCAG Checker"
+  },
+  "wcag_analysis": {
+    "url": "https://example.com",
+    "timestamp": "2025-08-13T11:25:28.812384",
+    "wcag_version": "2.2",
+    "compliance_level": "AA",
+    "total_issues": 18,
+    "critical_issues": 2,
+    "compliance_score": 85.0,
+    "categories": {
+      "perceivable": {
+        "score": 40,
+        "issues": [
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Image missing alt text",
+            "element": "<img id=\"offline-resources-1x\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABNEAAABkBAMAAABayr...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Image missing alt text",
+            "element": "<img id=\"offline-resources-2x\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAACY4AAADCCAMAAADT9D...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.2.1",
+            "level": "A",
+            "description": "Media element missing captions/transcript",
+            "element": "<audio id=\"offline-sound-press\" src=\"data:audio/mpeg;base64,T2dnUwACAAAAAAAAAABVDxppAAAAABYzHfUBHgF2...",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.2.1",
+            "level": "A",
+            "description": "Media element missing captions/transcript",
+            "element": "<audio id=\"offline-sound-hit\" src=\"data:audio/mpeg;base64,T2dnUwACAAAAAAAAAABVDxppAAAAABYzHfUBHgF2b3...",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.2.1",
+            "level": "A",
+            "description": "Media element missing captions/transcript",
+            "element": "<audio id=\"offline-sound-reached\" src=\"data:audio/mpeg;base64,T2dnUwACAAAAAAAAAAA/aj8KAAAAAAKIghABHg...",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast detected on page",
+            "element": "Overall page contrast",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 3.47:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 3.47:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 3.47:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 3.47:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 3.47:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.30:1 (minimum: 4.5:1)",
+            "element": "h1",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.30:1 (minimum: 4.5:1)",
+            "element": "span",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 3.47:1 (minimum: 4.5:1)",
+            "element": "p",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 3.47:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 3.47:1 (minimum: 4.5:1)",
+            "element": "p",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.1",
+            "level": "A",
+            "description": "Significant contrast loss for protanopia users: 31.3%",
+            "element": "Color-dependent content",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.1",
+            "level": "A",
+            "description": "Significant contrast loss for deuteranopia users: 51.5%",
+            "element": "Color-dependent content",
+            "impact": "major"
+          }
+        ]
+      },
+      "operable": {
+        "score": 100,
+        "issues": []
+      },
+      "understandable": {
+        "score": 100,
+        "issues": []
+      },
+      "robust": {
+        "score": 100,
+        "issues": []
+      }
+    },
+    "detailed_analysis": {},
+    "wcag_22_features": {
+      "target_size_compliant": true,
+      "focus_appearance_score": 100,
+      "dragging_alternative_score": 100
+    },
+    "accessibility_heatmap": "visualizations\\20250813_112529\\accessibility_heatmap.png"
+  },
+  "recommendations": [
+    {
+      "priority": "Critical",
+      "action": "Address all critical accessibility issues immediately",
+      "impact": "High - Prevents users with disabilities from accessing content"
+    },
+    {
+      "priority": "Medium",
+      "action": "Improve perceivable accessibility principles",
+      "impact": "Medium - 18 issues found in perceivable category"
+    }
+  ],
+  "summary": {
+    "compliance_score": 85.0,
+    "compliance_level": "AA",
+    "total_issues": 18,
+    "critical_issues": 2,
+    "needs_immediate_attention": true
+  }
+}

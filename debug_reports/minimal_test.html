@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Image Click</title>
+    <style>
+        .test-image { max-width: 300px; cursor: pointer; border: 2px solid blue; }
+    </style>
+</head>
+<body>
+    <h1>Test Image Click</h1>
+    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzAwN2JmZiIvPgogIDx0ZXh0IHg9IjE1MCIgeT0iMTA1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DbGljayBNZTwvdGV4dD4KICA8L3N2Zz4K"
+         class="test-image" onclick="openImage(this.src)" alt="Test Image">
+    
+    <script>
+        function openImage(src) {
+            alert('Image click works! URL: ' + src);
+            console.log('openImage called with:', src);
+        }
+    </script>
+</body>
+</html>

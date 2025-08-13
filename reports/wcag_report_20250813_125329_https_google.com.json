@@ -1,0 +1,443 @@
+{
+  "metadata": {
+    "generated_at": "2025-08-13T12:53:29.074451",
+    "report_version": "1.0",
+    "wcag_version": "2.1",
+    "generator": "Visual AI Regression Module - WCAG Checker"
+  },
+  "wcag_analysis": {
+    "url": "https://google.com",
+    "timestamp": "2025-08-13T12:53:24.250996",
+    "wcag_version": "2.2",
+    "compliance_level": "Non-compliant",
+    "total_issues": 52,
+    "critical_issues": 16,
+    "compliance_score": 52.5,
+    "categories": {
+      "perceivable": {
+        "score": 0,
+        "issues": [
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Image missing alt text",
+            "element": "<img alt=\"\" class=\"uHGFVd AZNDm\" data-atf=\"0\" data-csiid=\"aT2caK28N9nb1sQPgYfviQ4_1\" style=\"display:...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Image missing alt text",
+            "element": "<img alt=\"\" class=\"uHGFVd EOLKOc\" data-atf=\"0\" data-csiid=\"aT2caK28N9nb1sQPgYfviQ4_2\" style=\"display...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Image missing alt text",
+            "element": "<img alt=\"\" class=\"uHGFVd EOLKOc\" data-atf=\"0\" data-csiid=\"aT2caK28N9nb1sQPgYfviQ4_3\" style=\"display...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Image missing alt text",
+            "element": "<img alt=\"\" class=\"uHGFVd AZNDm\" data-atf=\"0\" data-csiid=\"aT2caK28N9nb1sQPgYfviQ4_4\" style=\"display:...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Image missing alt text",
+            "element": "<img alt=\"\" class=\"uHGFVd EOLKOc\" data-atf=\"0\" data-csiid=\"aT2caK28N9nb1sQPgYfviQ4_5\" style=\"display...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Image missing alt text",
+            "element": "<img alt=\"\" class=\"uHGFVd EOLKOc\" data-atf=\"0\" data-csiid=\"aT2caK28N9nb1sQPgYfviQ4_6\" style=\"display...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Image missing alt text",
+            "element": "<img alt=\"\" class=\"uHGFVd AZNDm\" data-atf=\"0\" data-csiid=\"aT2caK28N9nb1sQPgYfviQ4_7\" style=\"display:...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Image missing alt text",
+            "element": "<img alt=\"\" class=\"uHGFVd EOLKOc\" data-atf=\"0\" data-csiid=\"aT2caK28N9nb1sQPgYfviQ4_8\" style=\"display...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Image missing alt text",
+            "element": "<img alt=\"\" class=\"uHGFVd EOLKOc\" data-atf=\"0\" data-csiid=\"aT2caK28N9nb1sQPgYfviQ4_9\" style=\"display...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Form control missing label",
+            "element": "<textarea class=\"csi\" name=\"csi\" style=\"display:none\"></textarea>...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast detected on page",
+            "element": "Overall page contrast",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.1",
+            "level": "A",
+            "description": "Information might be conveyed through color only",
+            "element": "<span class=\"z5vYxf\" id=\"yZ04Ef\" style=\"color:#70757a\"></span>...",
+            "impact": "moderate"
+          },
+          {
+            "guideline": "1.4.1",
+            "level": "A",
+            "description": "Information might be conveyed through color only",
+            "element": "<span class=\"z5vYxf\" id=\"KHjmsf\" style=\"color:#000\"></span>...",
+            "impact": "moderate"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.27:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.27:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.27:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.27:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.27:1 (minimum: 4.5:1)",
+            "element": "a",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.27:1 (minimum: 4.5:1)",
+            "element": "a",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.27:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.27:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.27:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.27:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.1",
+            "level": "A",
+            "description": "Significant contrast loss for deuteranopia users: 53.6%",
+            "element": "Color-dependent content",
+            "impact": "major"
+          }
+        ]
+      },
+      "operable": {
+        "score": 30,
+        "issues": [
+          {
+            "guideline": "2.1.1",
+            "level": "A",
+            "description": "Interactive element not keyboard accessible",
+            "element": "<a data-jsarwt=\"1\" data-usg=\"AOvVaw1NsYdnlds8vG9HJRqcq_W4\" data-ved=\"0ahUKEwjtlOXAoIePAxXZrZUCHYHDO-...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "2.1.1",
+            "level": "A",
+            "description": "Interactive element not keyboard accessible",
+            "element": "<a data-jsarwt=\"1\" data-usg=\"AOvVaw3kTJGjj5oOM1q4bMAzKNog\" data-ved=\"0ahUKEwjtlOXAoIePAxXZrZUCHYHDO-...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "2.1.1",
+            "level": "A",
+            "description": "Interactive element not keyboard accessible",
+            "element": "<a data-jsarwt=\"1\" data-usg=\"AOvVaw2r0Zi2y90SFsMrwdB8fUcz\" data-ved=\"0ahUKEwjtlOXAoIePAxXZrZUCHYHDO-...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "2.1.1",
+            "level": "A",
+            "description": "Interactive element not keyboard accessible",
+            "element": "<a data-jsarwt=\"1\" data-usg=\"AOvVaw3UEFqJrxQPGZXV4DaP6zbR\" data-ved=\"0ahUKEwjtlOXAoIePAxXZrZUCHYHDO-...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "2.1.1",
+            "level": "A",
+            "description": "Interactive element not keyboard accessible",
+            "element": "<a data-jsarwt=\"1\" data-usg=\"AOvVaw1pMqL4P-c2v-w7aJ4SNns7\" data-ved=\"0ahUKEwjtlOXAoIePAxXZrZUCHYHDO-...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "2.4.1",
+            "level": "A",
+            "description": "Page missing skip navigation links",
+            "element": "Page structure",
+            "impact": "moderate"
+          },
+          {
+            "guideline": "2.3.1",
+            "level": "A",
+            "description": "Animation detected - verify it does not flash more than 3 times per second",
+            "element": "<div style=\"overflow: hidden; position: absolute; top: 0px; visibility: hidden; width: 370px; z-inde...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "button",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "span",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "input",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "input",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "g-menu",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "a",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "a",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "a",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "a",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "a",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "span",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "2.5.8",
+            "level": "AA",
+            "description": "Target size too small: 0x0px (minimum: 24x24px)",
+            "element": "div",
+            "impact": "major"
+          }
+        ]
+      },
+      "understandable": {
+        "score": 100,
+        "issues": []
+      },
+      "robust": {
+        "score": 80,
+        "issues": [
+          {
+            "guideline": "4.1.1",
+            "level": "A",
+            "description": "Duplicate ID found: ZnpjSd",
+            "element": "<div id=\"ZnpjSd\"></div>...",
+            "impact": "major"
+          },
+          {
+            "guideline": "4.1.1",
+            "level": "A",
+            "description": "Duplicate ID found: fU0xAb",
+            "element": "<div class=\"ZDHp\" id=\"fU0xAb\" role=\"presentation\" style=\"display:none\"><div class=\"kZtr1b\"><div aria...",
+            "impact": "major"
+          }
+        ]
+      }
+    },
+    "detailed_analysis": {},
+    "wcag_22_features": {
+      "target_size_compliant": false,
+      "focus_appearance_score": 100,
+      "dragging_alternative_score": 100
+    },
+    "accessibility_heatmap": "visualizations\\20250813_125328\\accessibility_heatmap.png"
+  },
+  "recommendations": [
+    {
+      "priority": "Critical",
+      "action": "Address all critical accessibility issues immediately",
+      "impact": "High - Prevents users with disabilities from accessing content"
+    },
+    {
+      "priority": "High",
+      "action": "Implement comprehensive accessibility audit and remediation",
+      "impact": "High - Current compliance level may violate accessibility laws"
+    },
+    {
+      "priority": "Medium",
+      "action": "Focus on achieving WCAG AA compliance",
+      "impact": "Medium - Improves accessibility for broader user base"
+    },
+    {
+      "priority": "Medium",
+      "action": "Improve perceivable accessibility principles",
+      "impact": "Medium - 24 issues found in perceivable category"
+    },
+    {
+      "priority": "Medium",
+      "action": "Improve operable accessibility principles",
+      "impact": "Medium - 26 issues found in operable category"
+    }
+  ],
+  "summary": {
+    "compliance_score": 52.5,
+    "compliance_level": "Non-compliant",
+    "total_issues": 52,
+    "critical_issues": 16,
+    "needs_immediate_attention": true
+  }
+}

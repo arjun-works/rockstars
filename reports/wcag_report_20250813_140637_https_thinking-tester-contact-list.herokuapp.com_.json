@@ -1,0 +1,190 @@
+{
+  "metadata": {
+    "generated_at": "2025-08-13T14:06:37.627106",
+    "report_version": "1.0",
+    "wcag_version": "2.1",
+    "generator": "Visual AI Regression Module - WCAG Checker"
+  },
+  "wcag_analysis": {
+    "url": "https://thinking-tester-contact-list.herokuapp.com/",
+    "timestamp": "2025-08-13T14:06:36.231701",
+    "wcag_version": "2.2",
+    "compliance_level": "AA",
+    "total_issues": 18,
+    "critical_issues": 3,
+    "compliance_score": 85.0,
+    "categories": {
+      "perceivable": {
+        "score": 60,
+        "issues": [
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Image missing alt text",
+            "element": "<img src=\"/img/thinkingTesterLogo.png\"/>...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Form control missing label",
+            "element": "<input id=\"email\" placeholder=\"Email\"/>...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Form control missing label",
+            "element": "<input id=\"password\" placeholder=\"Password\" type=\"password\"/>...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast detected on page",
+            "element": "Overall page contrast",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.66:1 (minimum: 4.5:1)",
+            "element": "h1",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.6",
+            "level": "AAA",
+            "description": "Color contrast below AAA standard: 6.02:1 (recommended: 7:1)",
+            "element": "div",
+            "impact": "moderate"
+          },
+          {
+            "guideline": "1.4.6",
+            "level": "AAA",
+            "description": "Color contrast below AAA standard: 6.02:1 (recommended: 7:1)",
+            "element": "div",
+            "impact": "moderate"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 2.23:1 (minimum: 4.5:1)",
+            "element": "a",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.66:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.66:1 (minimum: 4.5:1)",
+            "element": "p",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.6",
+            "level": "AAA",
+            "description": "Color contrast below AAA standard: 5.25:1 (recommended: 7:1)",
+            "element": "span",
+            "impact": "moderate"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.66:1 (minimum: 4.5:1)",
+            "element": "p",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.66:1 (minimum: 4.5:1)",
+            "element": "p",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.66:1 (minimum: 4.5:1)",
+            "element": "p",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.1",
+            "level": "A",
+            "description": "Significant contrast loss for protanopia users: 35.8%",
+            "element": "Color-dependent content",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.1",
+            "level": "A",
+            "description": "Significant contrast loss for deuteranopia users: 47.3%",
+            "element": "Color-dependent content",
+            "impact": "major"
+          }
+        ]
+      },
+      "operable": {
+        "score": 90,
+        "issues": [
+          {
+            "guideline": "2.4.1",
+            "level": "A",
+            "description": "Page missing skip navigation links",
+            "element": "Page structure",
+            "impact": "moderate"
+          }
+        ]
+      },
+      "understandable": {
+        "score": 90,
+        "issues": [
+          {
+            "guideline": "3.1.1",
+            "level": "A",
+            "description": "Page missing language declaration",
+            "element": "HTML element",
+            "impact": "major"
+          }
+        ]
+      },
+      "robust": {
+        "score": 100,
+        "issues": []
+      }
+    },
+    "detailed_analysis": {},
+    "wcag_22_features": {
+      "target_size_compliant": true,
+      "focus_appearance_score": 100,
+      "dragging_alternative_score": 100
+    },
+    "accessibility_heatmap": "visualizations\\20250813_140637\\accessibility_heatmap.png"
+  },
+  "recommendations": [
+    {
+      "priority": "Critical",
+      "action": "Address all critical accessibility issues immediately",
+      "impact": "High - Prevents users with disabilities from accessing content"
+    },
+    {
+      "priority": "Medium",
+      "action": "Improve perceivable accessibility principles",
+      "impact": "Medium - 16 issues found in perceivable category"
+    }
+  ],
+  "summary": {
+    "compliance_score": 85.0,
+    "compliance_level": "AA",
+    "total_issues": 18,
+    "critical_issues": 3,
+    "needs_immediate_attention": true
+  }
+}

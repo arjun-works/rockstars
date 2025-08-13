@@ -1,0 +1,109 @@
+{
+  "metadata": {
+    "generated_at": "2025-08-13T13:11:26.831862",
+    "report_version": "1.0",
+    "wcag_version": "2.1",
+    "generator": "Visual AI Regression Module - WCAG Checker"
+  },
+  "wcag_analysis": {
+    "url": "https://example.com",
+    "timestamp": "2025-08-13T13:11:25.987783",
+    "wcag_version": "2.2",
+    "compliance_level": "AA",
+    "total_issues": 8,
+    "critical_issues": 0,
+    "compliance_score": 92.5,
+    "categories": {
+      "perceivable": {
+        "score": 90,
+        "issues": [
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast detected on page",
+            "element": "Overall page contrast",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.00:1 (minimum: 4.5:1)",
+            "element": "h1",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.00:1 (minimum: 4.5:1)",
+            "element": "p",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.00:1 (minimum: 4.5:1)",
+            "element": "p",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 2.49:1 (minimum: 4.5:1)",
+            "element": "a",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.1",
+            "level": "A",
+            "description": "Significant contrast loss for deuteranopia users: 53.7%",
+            "element": "Color-dependent content",
+            "impact": "major"
+          }
+        ]
+      },
+      "operable": {
+        "score": 90,
+        "issues": [
+          {
+            "guideline": "2.4.1",
+            "level": "A",
+            "description": "Page missing skip navigation links",
+            "element": "Page structure",
+            "impact": "moderate"
+          }
+        ]
+      },
+      "understandable": {
+        "score": 90,
+        "issues": [
+          {
+            "guideline": "3.1.1",
+            "level": "A",
+            "description": "Page missing language declaration",
+            "element": "HTML element",
+            "impact": "major"
+          }
+        ]
+      },
+      "robust": {
+        "score": 100,
+        "issues": []
+      }
+    },
+    "detailed_analysis": {},
+    "wcag_22_features": {
+      "target_size_compliant": true,
+      "focus_appearance_score": 100,
+      "dragging_alternative_score": 100
+    },
+    "accessibility_heatmap": "visualizations\\20250813_131126\\accessibility_heatmap.png"
+  },
+  "recommendations": [],
+  "summary": {
+    "compliance_score": 92.5,
+    "compliance_level": "AA",
+    "total_issues": 8,
+    "critical_issues": 0,
+    "needs_immediate_attention": false
+  }
+}

@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Click Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-image { 
+            max-width: 300px; 
+            height: auto; 
+            border: 2px solid #007bff; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            margin: 10px;
+            transition: transform 0.3s;
+        }
+        .test-image:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <h1>🖼️ Image Click Modal Test</h1>
+    <p>Click on the images below to test the modal functionality:</p>
+    
+    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzAwN2JmZiIvPgogIDx0ZXh0IHg9IjE1MCIgeT0iMTA1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5UZXN0IEltYWdlIDE8L3RleHQ+Cjwvc3ZnPg==" 
+         alt="Test Image 1" 
+         class="test-image"
+         onclick="openImage(this.src)">
+    
+    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzI4YTc0NSIvPgogIDx0ZXh0IHg9IjE1MCIgeT0iMTA1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5UZXN0IEltYWdlIDI8L3RleHQ+Cjwvc3ZnPg==" 
+         alt="Test Image 2" 
+         class="test-image"
+         onclick="openImage(this.src)">
+    
+    <script>
+        function openImage(src) {
+            // Create modal overlay
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                z-index: 10000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            `;
+            
+            // Create image element
+            const img = document.createElement('img');
+            img.src = src;
+            img.style.cssText = `
+                max-width: 95%;
+                max-height: 95%;
+                object-fit: contain;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            `;
+            
+            // Create close button
+            const closeBtn = document.createElement('button');
+            closeBtn.innerHTML = '✕';
+            closeBtn.style.cssText = `
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: rgba(255, 255, 255, 0.9);
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+                cursor: pointer;
+                z-index: 10001;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            `;
+            
+            // Add elements to modal
+            modal.appendChild(img);
+            modal.appendChild(closeBtn);
+            
+            // Add event listeners
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal || e.target === closeBtn) {
+                    document.body.removeChild(modal);
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Prevent clicking on image from closing modal
+            img.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            // Add to page
+            document.body.appendChild(modal);
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Test function
+        function testModal() {
+            console.log('Testing modal functionality...');
+            alert('Click on the images to test the modal functionality!');
+        }
+        
+        // Auto-test after page load
+        window.addEventListener('load', function() {
+            console.log('Page loaded. Image click functionality ready for testing.');
+        });
+    </script>
+    
+    <div style="margin-top: 30px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+        <h3>🧪 Test Instructions:</h3>
+        <ol>
+            <li>Click on either test image above</li>
+            <li>Verify the modal opens with a dark overlay</li>
+            <li>Check that the image is centered and properly scaled</li>
+            <li>Confirm the close button (✕) appears in the top-right</li>
+            <li>Test closing by clicking the close button</li>
+            <li>Test closing by clicking outside the image</li>
+            <li>Verify body scrolling is disabled when modal is open</li>
+        </ol>
+    </div>
+</body>
+</html>
+    

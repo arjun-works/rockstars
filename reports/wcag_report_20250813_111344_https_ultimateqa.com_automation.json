@@ -1,0 +1,134 @@
+{
+  "metadata": {
+    "generated_at": "2025-08-13T11:13:44.406290",
+    "report_version": "1.0",
+    "wcag_version": "2.1",
+    "generator": "Visual AI Regression Module - WCAG Checker"
+  },
+  "wcag_analysis": {
+    "url": "https://ultimateqa.com/automation",
+    "timestamp": "2025-08-13T11:13:40.774513",
+    "wcag_version": "2.2",
+    "compliance_level": "AA",
+    "total_issues": 11,
+    "critical_issues": 2,
+    "compliance_score": 95.0,
+    "categories": {
+      "perceivable": {
+        "score": 80,
+        "issues": [
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Image missing alt text",
+            "element": "<img alt=\"\" class=\"wp-image-218123 lazyloaded\" data-src=\"https://ultimateqa.com/wp-content/uploads/2...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.1.1",
+            "level": "A",
+            "description": "Form control missing label",
+            "element": "<input class=\"et_pb_menu__search-input\" name=\"s\" placeholder=\"Search \u2026\" title=\"Search for:\" type=\"se...",
+            "impact": "critical"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.00:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.00:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.00:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.00:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.00:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.00:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.00:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.3",
+            "level": "AA",
+            "description": "Low color contrast ratio: 1.00:1 (minimum: 4.5:1)",
+            "element": "div",
+            "impact": "major"
+          },
+          {
+            "guideline": "1.4.1",
+            "level": "A",
+            "description": "Significant contrast loss for deuteranopia users: 65.7%",
+            "element": "Color-dependent content",
+            "impact": "major"
+          }
+        ]
+      },
+      "operable": {
+        "score": 100,
+        "issues": []
+      },
+      "understandable": {
+        "score": 100,
+        "issues": []
+      },
+      "robust": {
+        "score": 100,
+        "issues": []
+      }
+    },
+    "detailed_analysis": {},
+    "wcag_22_features": {
+      "target_size_compliant": true,
+      "focus_appearance_score": 100,
+      "dragging_alternative_score": 100
+    },
+    "accessibility_heatmap": "visualizations\\20250813_111344\\accessibility_heatmap.png"
+  },
+  "recommendations": [
+    {
+      "priority": "Critical",
+      "action": "Address all critical accessibility issues immediately",
+      "impact": "High - Prevents users with disabilities from accessing content"
+    }
+  ],
+  "summary": {
+    "compliance_score": 95.0,
+    "compliance_level": "AA",
+    "total_issues": 11,
+    "critical_issues": 2,
+    "needs_immediate_attention": true
+  }
+}
